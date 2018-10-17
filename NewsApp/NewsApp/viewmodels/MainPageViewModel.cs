@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
-using System.Text;
 
 namespace NewsApp.viewmodels
 {
@@ -84,12 +83,41 @@ namespace NewsApp.viewmodels
                 string content = await response.Content.ReadAsStringAsync();
                 JObject o = JObject.Parse(content);
                 var str = o.SelectToken(@"$.articles");
-                ObservableCollection<ArticleModel> list = JsonConvert.DeserializeObject<ObservableCollection<ArticleModel>>(str.ToString());              
-                foreach(var article in list)
+                List<ArticleModel> list = JsonConvert.DeserializeObject<List<ArticleModel>>(str.ToString());
+                foreach (var article in list)
                 {
+                    article.DescriptionFormatted = FormattingDescription(Constants.SYMBOLS, article.Description, 50);
                     Articles.Add(article);
                 }
             }
+        }
+
+        public string FormattingDescription(char[] symbols, string desc, int descLength = 10)
+        {
+            int size = descLength++;
+
+            if (!String.IsNullOrEmpty(desc))
+            {
+                if (desc.Length >= size)
+                {
+                    for (int i = size; i > 0; size--)
+                    {
+                        foreach (var symbol in symbols)
+                        {
+                            if (desc[size] == symbol)
+                            {
+                                var cuttedDesc = desc.Substring(0, size--);                                
+                                return cuttedDesc + "...";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    return desc;
+                }
+            }
+            return " ";
         }
 
         private void OnPropertyChanged(string propName)

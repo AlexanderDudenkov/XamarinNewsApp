@@ -16,6 +16,8 @@ namespace NewsApp.util
             return _Instance;
         }
 
-        public static string URL = "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=f74ef05b6a3548c19183980c5a90c444";
+        public static readonly string URL = "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=f74ef05b6a3548c19183980c5a90c444";
+        public static readonly char[] SYMBOLS = { ' ', '.', ',', ';', '-', '!', '?', ':', '"', '*', '&', '=', '+', '%', '(', ')', '~', '{', '}', '[', ']', '/', '\\', '|', '$', '<', '>' };
+
     }
 }
