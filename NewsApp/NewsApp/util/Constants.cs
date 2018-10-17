@@ -4,18 +4,18 @@ using System.Text;
 
 namespace NewsApp.util
 {
-    class Constants
+     class Constants
     {
-        private static Constants instance;
+        private static Constants _Instance;
         private Constants() { }
 
-        public static Constants getInstance()
+        public static Constants GetInstance()
         {
-            if (instance == null)
-                instance = new Constants();
-            return instance;
+            if (_Instance == null)
+                _Instance = new Constants();
+            return _Instance;
         }
 
-        public string url = "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=f74ef05b6a3548c19183980c5a90c444";
+        public static string URL = "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=f74ef05b6a3548c19183980c5a90c444";
     }
 }
