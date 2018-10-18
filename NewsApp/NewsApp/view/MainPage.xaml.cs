@@ -22,7 +22,7 @@ namespace NewsApp
         {
 
             if (args.SelectedItem is ArticleModel article)
-            {
+            {               
                 await Navigation.PushAsync(new DetailPage(article));
                 ((ListView)sender).SelectedItem = null;
             }
