@@ -86,38 +86,10 @@ namespace NewsApp.viewmodels
                 List<ArticleModel> list = JsonConvert.DeserializeObject<List<ArticleModel>>(str.ToString());
                 foreach (var article in list)
                 {
-                    article.DescriptionFormatted = FormattingDescription(Constants.SYMBOLS, article.Description, 50);
+                    article.DescriptionFormatted = new FormattingString().FormattingDescription(Constants.SYMBOLS, article.Description, 50);
                     Articles.Add(article);
                 }
             }
-        }
-
-        public string FormattingDescription(char[] symbols, string desc, int descLength = 10)
-        {
-            int size = descLength++;
-
-            if (!String.IsNullOrEmpty(desc))
-            {
-                if (desc.Length >= size)
-                {
-                    for (int i = size; i > 0; size--)
-                    {
-                        foreach (var symbol in symbols)
-                        {
-                            if (desc[size] == symbol)
-                            {
-                                var cuttedDesc = desc.Substring(0, size--);                                
-                                return cuttedDesc + "...";
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    return desc;
-                }
-            }
-            return " ";
         }
 
         private void OnPropertyChanged(string propName)

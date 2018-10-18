@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NewsApp.util
 {
-     class Constants
+    public class Constants
     {
         private static Constants _Instance;
         private Constants() { }
