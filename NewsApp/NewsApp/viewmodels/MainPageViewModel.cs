@@ -50,18 +50,22 @@ namespace NewsApp.viewmodels
         }
 
         public MainPageViewModel()
+        {          
+            Articles = new ObservableCollection<ArticleModel>();
+            LoadData();
+        }
+
+        private void SomeMethod()
         {
-            var text = new FormattingString().FormattingDescription(Constants.SYMBOLS, "US seeks to change the very definition of employment under H-1B, which is popular among Indian companies.", 50);
+            var text = new FormattingString().FormattingDescription(Constants.SYMBOLS, "us seeks to change the very definition of employment under h-1b, which is popular among indian companies.", 50);
             Articles = new ObservableCollection<ArticleModel> {
-            new ArticleModel{Title="Trump administration to propose major changes in H-1B visas",
-            Author="PTI",
-            Description="US seeks to change the very definition of employment under H-1B, which is popular among Indian companies.",
+            new ArticleModel{Title="trump administration to propose major changes in h-1b visas",
+            Author="pti",
+            Description="us seeks to change the very definition of employment under h-1b, which is popular among indian companies.",
             UrlToImage="https://img.etimg.com/thumb/msid-66269732,width-1070,height-580,imgsize-311439,overlay-economictimes/photo.jpg",
-            PublishedAt="2018-10-18T09:23:34+00:00",
+            PublishedAt="2018-10-18t09:23:34+00:00",
             DescriptionFormatted = text}
             };
-
-            //LoadData();
         }
 
         private async void LoadData()
