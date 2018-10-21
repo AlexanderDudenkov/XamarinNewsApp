@@ -15,8 +15,6 @@ namespace NewsApp
         public MainPage()
         {
 
-            IDeviceInfo deviceInfo = DependencyService.Get<IDeviceInfo>();
-
             var viemodel = new MainPageViewModel();
             SetBinding(_myProperty, new Binding("IsVisible"));
 
@@ -28,13 +26,16 @@ namespace NewsApp
                 ItemsSource = viemodel.Articles,
                 ItemTemplate = new DataTemplate(() =>
                 {
-
-                    if (deviceInfo.GetInfo()=="")
+                    Label titleLabel;
+                    if ((int)Android.OS.Build.VERSION.SdkInt >= 21)
                     {
-
+                        titleLabel = new CustomLabel();
+                    }
+                    else
+                    {
+                        titleLabel = new Label();
                     }
 
-                    Label titleLabel = new Label();
                     titleLabel.SetBinding(Label.TextProperty, "Title");
 
                     Image image = new Image { Aspect = Aspect.AspectFill };
